@@ -3,9 +3,9 @@ backend:
   name: github
   repo: Zatops/Zatops-Blog
   branch: main
-  auth_type: oauth
-  oauth_client_id: Ov23liC0TjTK2AymJSPT
-  oauth_scopes: "public_repo,user"
+  base_url: https://zatops.pages.dev
+  auth_endpoint: /api/auth
+  oauth_scopes: "public_repo"
 
 site_url: https://zatops.pages.dev
 display_url: https://zatops.pages.dev
