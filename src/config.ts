@@ -426,7 +426,7 @@ export const commentConfig: CommentConfig = {
 	enable: true, // 启用评论功能 (先开着让你看看效果)
 	system: "twikoo", // 评论系统选择: "twikoo" | "giscus"
 	twikoo: {
-		envId: "https://twikoo.zatops.workers.dev", // Zatops Twikoo on Cloudflare Workers
+		envId: "https://twikoo.vercel.app", // Worker 暂时国内打不开，先用演示地址（以后换自己的）
 		lang: SITE_LANG,
 	},
 	giscus: {
