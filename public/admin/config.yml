@@ -3,8 +3,8 @@ backend:
   name: github
   repo: Zatops/Zatops-Blog
   branch: main
-  base_url: https://zatops.pages.dev
-  auth_endpoint: /api/auth
+  auth_type: device-flow
+  app_id: Ov23liC0TjTK2AymJSPT
   oauth_scopes: "public_repo"
 
 site_url: https://zatops.pages.dev
