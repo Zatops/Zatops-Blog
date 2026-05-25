@@ -24,32 +24,26 @@ export async function onRequest(context) {
 
 		const data = await response.json();
 		const accessToken = data.access_token;
+		const hashFragment =
+			"access_token=" +
+			accessToken +
+			"&token_type=bearer&provider=github";
 
-		return new Response(
-			`
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="utf-8">
-      <title>正在登录...</title>
-    </head>
-    <body>
-      <script>
-        window.location.href = '/admin/#' + 'access_token=${accessToken}&token_type=bearer&provider=github';
-      </script>
-      <p>授权成功！正在跳转...</p>
-    </body>
-    </html>
-  `,
-			{
-				headers: {
-					"Content-Type": "text/html; charset=utf-8",
-				},
+		const html =
+			"<!DOCTYPE html><html><head><meta charset='utf-8'><title>Auth</title></head><body><script>window.location.replace('/admin/#" +
+			hashFragment +
+			"');</script></body></html>";
+
+		return new Response(html, {
+			headers: {
+				"Content-Type": "text/html; charset=utf-8",
 			},
-		);
+		});
 	}
 	return Response.redirect(
-		`https://github.com/login/oauth/authorize?client_id=${clientId}&scope=public_repo,user`,
+		"https://github.com/login/oauth/authorize?client_id=" +
+			clientId +
+			"&scope=public_repo,user",
 		302,
 	);
 }
