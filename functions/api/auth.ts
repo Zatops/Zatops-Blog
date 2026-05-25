@@ -31,14 +31,10 @@ export async function onRequest(context) {
     </head>
     <body>
       <script>
-        window.opener && window.opener.postMessage({
-          type: 'authorization',
-          provider: 'github',
-          token: '${accessToken}',
-        }, window.location.origin);
-        setTimeout(() => window.close(), 500);
+        var hash = '#access_token=${accessToken}&token_type=bearer&provider=github';
+        window.location.replace('/admin/' + hash);
       </script>
-      <p>授权成功！正在返回后台...</p>
+      <p>授权成功！正在跳转...</p>
     </body>
     </html>
   `, {
