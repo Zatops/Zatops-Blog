@@ -1,0 +1,136 @@
+---
+backend:
+  name: github
+  repo: Zatops/Zatops-Blog
+  branch: main
+  base_url: https://zatops.pages.dev
+  auth_endpoint: /api/auth
+
+site_url: https://zatops.pages.dev
+display_url: https://zatops.pages.dev
+logo_url: https://zatops.pages.dev/favicon/favicon.ico
+
+media_folder: "src/assets/images"
+public_folder: "/_astro"
+
+publish_mode: editorial_workflow
+
+locale: zh_Hans
+
+collections:
+  - name: "posts"
+    label: "博客文章"
+    label_singular: "文章"
+    description: "在这里写、编辑、删除你的所有博客文章"
+    folder: "src/content/posts"
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "posts/{{slug}}"
+    sortable_fields: ["title", "published", "category", "priority"]
+    view_groups:
+      - label: "分类"
+        field: category
+      - label: "年份"
+        pattern: \d{4}
+        field: published
+    fields:
+      - label: "文章标题"
+        name: title
+        widget: string
+        tagname: h1
+        required: true
+        i18n: true
+
+      - label: "发布日期"
+        name: published
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        required: true
+
+      - label: "文章描述"
+        name: description
+        widget: text
+        required: false
+        hint: "文章简短描述，用于显示在文章列表卡片和 SEO 摘要中"
+
+      - label: "是否是草稿？"
+        name: draft
+        widget: boolean
+        default: false
+        required: false
+        hint: "如果是草稿，设为 true，文章不会上线"
+
+      - label: "是否置顶？"
+        name: top
+        widget: boolean
+        default: false
+        required: false
+        hint: "设为 true，此文章会在文章列表置顶"
+
+      - label: "文章封面图 URL"
+        name: cover
+        widget: string
+        required: false
+        hint: "封面图，不填则显示默认图"
+
+      - label: "文章分类"
+        name: category
+        widget: select
+        multiple: false
+        required: false
+        options:
+          - label: "模板示例及教程"
+            value: "模板示例及教程"
+          - label: "技术"
+            value: "技术"
+          - label: "动态"
+            value: "动态"
+          - label: "读书笔记"
+            value: "读书笔记"
+          - label: "生活"
+            value: "生活"
+          - label: "其他"
+            value: "其他"
+
+      - label: "标签 Tags"
+        name: tags
+        widget: select
+        multiple: true
+        required: false
+        options:
+          - label: "模板示例及教程"
+            value: "模板示例及教程"
+          - label: "技术"
+            value: "技术"
+          - label: "动态"
+            value: "动态"
+          - label: "草稿"
+            value: "草稿"
+          - label: "About 此站"
+            value: "About 此站"
+          - label: "生活"
+            value: "生活"
+          - label: "自定义"
+            value: "自定义"
+          - label: "读书笔记"
+            value: "读书笔记"
+          - label: "小说"
+            value: "小说"
+          - label: "阅读"
+            value: "阅读"
+
+      - label: "开启评论？"
+        name: comment
+        widget: boolean
+        default: true
+        required: false
+
+      - label: "文章正文内容"
+        name: body
+        widget: markdown
+        required: true
+        hint: "正文在这里写！支持 Markdown 各种语法，也可以直接插图片！"
+...
